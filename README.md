@@ -85,8 +85,166 @@ final List<ShopItem> items = [
 
 # **Tugas 8**
 
-## 1. 
+## 1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+Navigator.push() digunakan untuk menambahkan rute baru ke dalam stack. Ketika rute baru ditambahkan, rute sebelumnya tetap ada di dalam stack. Ketika pengguna menekan tombol kembali, pengguna akan kembali ke rute sebelumnya. Sedangkan Navigator.pushReplacement() digunakan untuk mengganti rute yang ada di stack dengan rute baru. Ketika rute baru ditambahkan, rute sebelumnya dihapus dari stack. Ketika pengguna menekan tombol kembali, pengguna akan langsung kembali ke rute sebelumnya.
 
-## 2. 
+## 2. Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
 
-## 3. 
+1. Container: Widget ini digunakan untuk mengatur tata letak dan dekorasi widget lain. Container dapat digunakan untuk menentukan ukuran, padding, margin, warna latar belakang, dan banyak lagi. Container bisa dibilang sangat fleksibel dan dapat digunakan dalam berbagai konteks.
+
+2. Row dan Column: Digunakan untuk mengatur widget secara horizontal (Row) atau vertikal (Column). Row dan Column dapat digunakan untuk menampilkan widget dalam bentuk baris atau kolom. Kedua widget ini sangat berguna untuk membuat tata letak yang kompleks.
+
+3. Stack: Digunakan untuk menumpuk widget di atas satu sama lain. Stack berguna untuk membuat tata letak yang kompleks dan menarik. Dalam Stack, widget ditumpuk di atas satu sama lain dalam urutan yang ditentukan.
+
+4. Expanded: Digunakan untuk mengisi ruang kosong dalam widget parent. Expanded dapat digunakan dalam Row atau Column untuk memberikan widget tambahan ruang yang tersedia.
+
+5. ListView: Digunakan untuk menampilkan daftar widget dalam bentuk scrollable. ListView sangat berguna untuk menampilkan daftar item yang panjang.
+
+6. GridView: Digunakan untuk menampilkan daftar widget dalam bentuk grid. GridView sangat berguna untuk menampilkan daftar item dalam bentuk grid.
+
+## 3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+Nama Item:
+Atribut ini menggunakan TextFormField
+~~~
+child: TextFormField(
+  decoration: InputDecoration(
+    hintText: "Nama Item",
+    labelText: "Nama Item",
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+  ),
+  onChanged: (String? value) {
+    setState(() {
+      _name = value!;
+    });
+  },
+  validator: (String? value) {
+    if (value == null || value.isEmpty) {
+      return "Nama tidak boleh kosong!";
+    }
+    return null;
+  },
+),
+~~~
+
+Harga:
+Atribut ini menggunakan TextFormField, namun terdapat validasi bahwa input harus dalam bentuk integer
+~~~
+child: TextFormField(
+  decoration: InputDecoration(
+    hintText: "Harga",
+    labelText: "Harga",
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+  ),
+  onChanged: (String? value) {
+    setState(() {
+      _price = int.parse(value!);
+    });
+  },
+  validator: (String? value) {
+    if (value == null || value.isEmpty) {
+      return "Harga tidak boleh kosong!";
+    }
+    if (int.tryParse(value) == null) {
+      return "Harga harus berupa angka!";
+    }
+    return null;
+  },
+),
+~~~
+
+Deskripsi:
+Atribut ini menggunakan TextFormField
+~~~
+child: TextFormField(
+  decoration: InputDecoration(
+    hintText: "Deskripsi",
+    labelText: "Deskripsi",
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+  ),
+  onChanged: (String? value) {
+    setState(() {
+      _description = value!;
+    });
+  },
+  validator: (String? value) {
+    if (value == null || value.isEmpty) {
+      return "Deskripsi tidak boleh kosong!";
+    }
+    return null;
+  },
+),
+~~~
+
+## 4. Bagaimana penerapan clean architecture pada aplikasi Flutter?
+Clean Architecture adalah suatu pola arsitektur yang digunakan untuk menyusun kode yang bersih dan terstruktur. Dalam Flutter, Clean Architecture dapat diterapkan dengan memisahkan kode menjadi beberapa lapisan, diantaranya terdapat:
+
+**Domain Layer:** Lapisan ini berisi bisnis logic dan model data dari aplikasi.
+
+**Application Layer:** Lapisan ini mengimplementasikan use case dari aplikasi dan menghubungkan lapisan infrastruktur dan presentasi.
+
+**Infrastructure Layer:** Lapisan ini berurusan dengan interaksi dengan dunia luar, termasuk database, web server, dan antarmuka pengguna.
+
+**Presentation Layer:** Lapisan ini berisi kode yang merender antarmuka pengguna.
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)
+### Membuat minimal satu halaman baru pada aplikasi, yaitu halaman formulir tambah item baru dengan ketentuan sebagai berikut:
+ **Memakai minimal tiga elemen input, yaitu name, amount, description. Tambahkan elemen input sesuai dengan model pada aplikasi tugas Django yang telah kamu buat.**
+
+Untuk checklist ini, saya menambahkan potongan kode berikut pada file shoplist_form.dart
+~~~
+class _ShopFormPageState extends State<ShopFormPage> {
+  final _formKey = GlobalKey<FormState>();
+  String _name = "";
+  int _price = 0;
+  String _description = "";
+  ...
+}
+~~~
+
+ **Memiliki sebuah tombol Save.**
+
+Untuk menambahkan tombol save, saya menambahkan method _saveItem di dalam class _ShopFormPageState
+
+ **Setiap elemen input di formulir juga harus divalidasi dengan ketentuan sebagai berikut:**
+
+ **1. Setiap elemen input tidak boleh kosong.**
+
+Untuk mengerjakan checklist ini, saya menambahkan potongan kode dalam Widget dari ketiga attribut yang terdapat di dalam form. Berikut adalah potongan kode yang saya tambahkan.
+
+Nama Item
+~~~
+if (value == null || value.isEmpty) {
+  return "Nama tidak boleh kosong!";
+}
+~~~
+
+Harga
+~~~
+if (value == null || value.isEmpty) {
+  return "Harga tidak boleh kosong!";
+}
+~~~
+
+Deskripsi
+~~~
+if (value == null || value.isEmpty) {
+  return "Deskripsi tidak boleh kosong!";
+}
+~~~
+
+ **2. Setiap elemen input harus berisi data dengan tipe data atribut modelnya.**
+
+Sama seperti checklist sebelumnya, saya menambahkan potongan kode dalam Widget dari ketiga attribut yang terdapat di dalam form. Namun pada checklist ini, Nama Item dan deskripsi tidak memerlukan validasi tipe data karena kedua atribut tersebut tidak harus berbrntuk integer. Berikut adalah potongan kode yang saya tambahkan pada harga yang inputnya harus dalam bentuk integer.
+
+Harga
+~~~
+if (int.tryParse(value) == null) {
+  return "Harga harus berupa angka!";
+}
+~~~
