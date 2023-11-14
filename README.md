@@ -81,3 +81,12 @@ final List<ShopItem> items = [
     ShopItem("Logout", Icons.logout, Colors.purple),
 ];
 ~~~
+
+
+# **Tugas 8**
+
+## 1. 
+
+## 2. 
+
+## 3. 
