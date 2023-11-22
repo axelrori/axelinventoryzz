@@ -306,7 +306,7 @@ Widget untuk input teks dalam form.
 
 ## 6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
 ### Memastikan deployment proyek tugas Django kamu telah berjalan dengan baik
-
+deployment web dapat diakses di link https://serafino-theodore.pbp.cs.ui.ac.id/
 
 ### Membuat halaman login pada proyek tugas Flutter
 Pertama-tama, saya membuat file login.dart pada folder /lib/screens. Di dalam file terebut berisi form login dengan elemen inputnya. Kemudian saya menggunakan http.post untuk mengirim permintaan endpoint autentikasi ke django. Lalu token autentikasi di simpan di dalam shared_preferences.
