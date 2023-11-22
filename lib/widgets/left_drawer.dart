@@ -1,3 +1,4 @@
+import 'package:axelinventoryzz/screens/list_item.dart';
 import 'package:axelinventoryzz/screens/view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:axelinventoryzz/screens/menu.dart';
@@ -57,6 +58,17 @@ class LeftDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const ShopFormPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Produk'),
+            onTap: () {
+              // Route menu ke halaman produk
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+              );
             },
           ),
           ListTile(

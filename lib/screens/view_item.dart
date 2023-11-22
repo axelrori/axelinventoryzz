@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:axelinventoryzz/models/item.dart'; // Replace with your actual path
+import 'package:axelinventoryzz/models/item_models.dart'; // Replace with your actual path
 
 class ItemListPage extends StatelessWidget {
-  final List<Item> items;
+  final List<Product> items;
 
   ItemListPage({Key? key, required this.items}) : super(key: key);
 
@@ -19,7 +19,7 @@ class ItemListPage extends StatelessWidget {
             child: ListTile(
               title: Text(items[index].name),
               subtitle: Text(
-                  'Harga: ${items[index].price}\nDeskripsi: ${items[index].description}'),
+                  'Harga: ${items[index].price}\nAmount: ${items[index].amount}\nDeskripsi: ${items[index].description}'),
             ),
           );
         },
